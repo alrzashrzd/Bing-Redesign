@@ -45,7 +45,7 @@ The entire website consists of a **single page** — a full-screen hero with no 
 
 ## Demo Video
 
-[[<video src="[https://github.com/alrzashrzd/Search-Engine-/raw/refs/heads/main/Demo-Bing.webm](https://github.com/user-attachments/assets/ad7b67b1-9109-4395-9fca-9af49737b335)" controls></video>](https://github.com/user-attachments/assets/7f3b2adb-9622-4f9f-a197-fa0592530e5b)](https://github.com/user-attachments/assets/ad7b67b1-9109-4395-9fca-9af49737b335)
+https://github.com/user-attachments/assets/ad7b67b1-9109-4395-9fca-9af49737b335
 
 ---
 
