@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en" class="anim">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Search - Microsoft Bing</title>
+  <meta name="description" content="Fastshot turns a written description into a working app.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Noto+Sans+Arabic:wght@300..700&family=Noto+Sans+Devanagari:wght@300..700&family=Noto+Sans+JP:wght@300..700&family=Noto+Sans+KR:wght@300..700&family=Noto+Sans+SC:wght@300..700&family=Noto+Sans+TC:wght@300..700&display=block" rel="stylesheet">
+  <style>/* ═══════════════════════════════════════════════════
+   FASTSHOT LANDING HERO — PIXEL-FAITHFUL RECREATION
+   ═══════════════════════════════════════════════════ */
+
+/* ── RESET ──────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── FONTS & BODY ──────────────────────────────── */
+:root {
+  --font-text: 'Space Grotesk', -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Space Grotesk', var(--font-text);
+  --e-primary: cubic-bezier(.16,1,.3,1);
+  --e-soft: cubic-bezier(.22,1,.36,1);
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-text);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  background: #0a0d12;
+  overflow: hidden;
+}
+
+body { color: #fff; }
+a { color: inherit; text-decoration: none; }
+
+/* ── UNIT SYSTEM (DESKTOP 1560×1008) ──────────── */
+:root {
+  --u: min(0.06410256vw, 0.12400794vh);
+  --vu: 0.09920635vh;
+  --inset-top: 41;
+  --inset-bottom: 106;
+}
+@supports (height:100dvh) {
+  :root {
+    --u: min(0.06410256vw, 0.12400794dvh);
+    --vu: 0.09920635dvh;
+  }
+}
+@media (min-width:1561px) {
+  :root { --inset-top: 27; --inset-bottom: 74; }
+}
+
+/* ── NAV VARIABLES ─────────────────────────────── */
+:root {
+  --brand-x: 225; --brand-y: 45; --mark: 34; --brand-gap: 12; --brand-fs: 18.49;
+  --links-y: 50.5; --links-gap: 50; --links-fs: 21.69;
+  --cta-x: 1195; --cta-y: 42; --cta-w: 140; --cta-h: 43; --cta-r: 12; --cta-fs: 15.70; --cta-dy: 2;
+  --nav-ls: -0.0115em; --brand-ls: -0.0154em; --cta-ls: -0.0127em;
+
+  /* HERO */
+  --hero-gap: 51;
+  --h1-y: 323; --h1-fs: 36.25; --display-ls: 0.0018em;
+  --body-ls: 0.007em;
+
+  /* COMPOSER */
+  --card-x: 425; --card-y: 413;  --card-w: 708; --card-h: 143; --card-r: 26;
+  --ph-x: 452; --ph-y: 446;  --ph-fs: 14.955;
+  --chips-x: 444; --chips-y: 505; --chip-h: 30; --chip-r: 9;  --chip-fs: 11.2; --chip-gap: 5.5;
+  --son-fs: 10.4; --son-top: 15.5; --chev-gap: 6.2;
+  --att-x: 1043.2; --att-y: 515.1;
+  --send-x: 1084; --send-y: 507; --send-d: 35;
+
+  /* FOOTER */
+  --by-y: 799; --by-fs: 14.01; --logo-y: 867; --logo-gap: 62;
+
+  /* WEIGHTS */
+  --w-regular: 400;
+  --w-display-wght: 410;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-display: var(--w-display-wght);
+  --w-nav: 400;
+  --w-brand: 500;
+  --w-cta: 520;
+  --w-body: var(--w-regular);
+  --w-label: var(--w-medium);
+  --w-model: var(--w-regular);
+  --w-proof: 480;
+
+  /* LETTER SPACING */
+  --label-ls: normal;
+  --model-ls: normal;
+  --proof-ls: 0.0065em;
+}
+
+/* ═══════════════════════════════════════════════════
+   STAGE
+   ═══════════════════════════════════════════════════ */
+.stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #0a0d12;
+}
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.22);
+  z-index: 0.4;
+  pointer-events: none;
+}
+
+.stage-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.stage-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 0.5;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+.stage-dim.active {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* ═══════════════════════════════════════════════════
+   FRAME
+   ═══════════════════════════════════════════════════ */
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding:
+    calc(var(--inset-top) * var(--vu))
+    calc(225 * var(--u))
+    calc(var(--inset-bottom) * var(--vu));
+}
+
+/* ═══════════════════════════════════════════════════
+   NAV  (all children of .frame: #menu, .nav, .hero, .footer)
+   ═══════════════════════════════════════════════════ */
+.nav {
+  height: calc(43 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: var(--nav-ls);
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--brand-gap) * var(--u));
+  letter-spacing: var(--brand-ls);
+}
+
+.mark {
+  font-family: var(--font-display);
+  font-size: calc(var(--mark) * var(--u));
+  font-weight: var(--w-brand);
+  font-variation-settings: "opsz" 32;
+  line-height: 1;
+  background: linear-gradient(135deg, #FF6B35, #FF9F1C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-name {
+  font-size: calc(var(--brand-fs) * var(--u));
+  font-weight: var(--w-brand);
+  color: #fff;
+}
+
+
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--cta-h) * var(--u));
+  width: calc(var(--cta-w) * var(--u));
+  background: linear-gradient(135deg, #FF6B35, #FF9F1C);
+  color: #fff;
+  font-size: calc(var(--cta-fs) * var(--u));
+  font-weight: var(--w-cta);
+  border-radius: calc(var(--cta-r) * var(--u));
+  letter-spacing: var(--cta-ls);
+  transform: translateY(calc(var(--cta-dy) * var(--u)));
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.cta:hover { opacity: 0.9; }
+
+/* Header icon buttons */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+}
+.icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  transition: background 0.2s, color 0.2s;
+}
+.icon-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+.icon-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
+}
+
+/* Language dropdown */
+.lang-wrap {
+  position: relative;
+}
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 180px;
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 14px;
+  clip-path: inset(0 round 14px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px) scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+}
+.lang-dropdown.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.lang-option {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-option:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.lang-option.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.lang-dropdown::-webkit-scrollbar { width: 4px; }
+.lang-dropdown::-webkit-scrollbar-track { background: transparent; }
+.lang-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+/* Footer logos */
+.footer-ms, .footer-copilot { display: inline-block; vertical-align: middle; }
+
+/* Burger — hidden on desktop */
+.burger {
+  display: none;
+  cursor: pointer;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.burger-close {
+  display: none;
+}
+/* Mobile sheet (shown when burger is open) */
+.mobile-sheet {
+  display: none;
+}
+/* Chip dropdown (mobile model-selector style) */
+.chip-dropdown {
+  display: none;
+  position: relative;
+}
+.chip-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.chip-dropdown-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.chip-dropdown-btn svg {
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: transform 0.2s;
+}
+.chip-dropdown.open .chip-dropdown-btn svg {
+  transform: rotate(180deg);
+}
+.chip-dropdown-list {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  min-width: 160px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+.chip-dropdown.open .chip-dropdown-list {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.chip-dropdown-option {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.chip-dropdown-option:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.chip-dropdown-option.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+/* Auth popup overlay */
+.auth-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.auth-popup.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.auth-card {
+  position: relative;
+  width: min(100%, 380px);
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s ease;
+}
+.auth-popup.open .auth-card {
+  transform: translateY(0) scale(1);
+}
+.auth-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.auth-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.auth-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 24px;
+}
+.auth-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.auth-input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.auth-input:focus { border-color: rgba(255, 255, 255, 0.3); }
+.auth-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 10px;
+}
+.auth-btn-primary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.auth-btn-primary:hover { background: rgba(255, 255, 255, 0.16); }
+.auth-btn-secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+.auth-btn-secondary:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+}
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.auth-btn-microsoft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+.auth-btn-microsoft:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+/* ═══════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════ */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--hero-gap) * var(--u));
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: calc(var(--h1-fs) * var(--u));
+  font-weight: var(--w-display);
+  font-variation-settings: "opsz" 32;
+  line-height: 1.12;
+  letter-spacing: var(--display-ls);
+  text-align: center;
+  color: #fff;
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════════════════
+   CARD
+   ═══════════════════════════════════════════════════ */
+.card {
+  position: relative;
+  width: calc(var(--card-w) * var(--u));
+  height: calc(var(--card-h) * var(--u));
+  border-radius: calc(var(--card-r) * var(--u));
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  will-change: transform, opacity;
+}
+
+/* ── SEARCH INPUT ─────────────────────────────── */
+.search-input {
+  position: absolute;
+  left: calc((var(--ph-x) - var(--card-x)) * var(--u));
+  top: calc((var(--ph-y) - var(--card-y)) * var(--u));
+  font-size: calc(var(--ph-fs) * var(--u));
+  font-weight: var(--w-body);
+  font-family: inherit;
+  color: #fff;
+  letter-spacing: var(--body-ls);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: calc((var(--card-w) - (var(--ph-x) - var(--card-x)) - 40) * var(--u));
+  caret-color: rgba(255, 255, 255, 0.6);
+}
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+.card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle 180px at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.12), transparent 70%);
+  z-index: 0;
+}
+.card:hover .card-glow {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOOLBAR STRIP (.tools) — DESKTOP: absolute inside card
+   ═══════════════════════════════════════════════════ */
+.tools {
+  position: absolute;
+  left: calc((var(--chips-x) - var(--card-x)) * var(--u));
+  top: calc((var(--chips-y) - var(--card-y)) * var(--u));
+  right: calc((var(--card-x) + var(--card-w) - 1133) * var(--u));
+  height: calc(var(--chip-h) * var(--u));
+  pointer-events: none;
+}
+
+/* ── CHIPS ─────────────────────────────────────── */
+.chips {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(var(--chip-h) * var(--u));
+  display: flex;
+  align-items: center;
+  gap: calc(var(--chip-gap) * var(--u));
+  pointer-events: auto;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--chip-h) * var(--u));
+  padding: 0 calc(10 * var(--u));
+  border-radius: calc(var(--chip-r) * var(--u));
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: calc(var(--chip-fs) * var(--u));
+  font-weight: var(--w-label);
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: var(--label-ls);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+.chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+}
+.chip.selected {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.18);
+}
+
+/* ═══════════════════════════════════════════════════
+   RIGHT CLUSTER — DESKTOP: absolute children
+   ═══════════════════════════════════════════════════ */
+.right {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.right > * {
+  position: absolute;
+  pointer-events: auto;
+}
+
+/* Model "Sonnet 4.5" + chevron */
+.model {
+  left: calc(510.2 * var(--u));
+  top: calc(var(--son-top) * var(--u));
+  font-size: calc(var(--son-fs) * var(--u));
+  font-weight: var(--w-model);
+  color: #98999C;
+  line-height: 1;
+  letter-spacing: var(--model-ls);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--chev-gap) * var(--u));
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.model:hover { color: #fff; }
+
+.chev {
+  width: calc(6.8 * var(--u));
+  height: calc(6.8 * var(--u));
+  flex-shrink: 0;
+}
+.model:hover .chev { color: #fff; }
+
+/* Attach + image icons — raw, no background */
+.img-icon {
+  left: calc(544 * var(--u));
+  top: calc(10 * var(--u));
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  pointer-events: auto;
+}
+.img-icon:hover { opacity: 0.7; }
+.img-icon svg {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  display: block;
+}
+
+.attach {
+  left: calc(596 * var(--u));
+  top: calc(10 * var(--u));
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  pointer-events: auto;
+}
+.attach:hover { opacity: 0.7; }
+.attach svg {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  display: block;
+}
+
+/* Divider between icons and send */
+.right-divider {
+  left: calc(622 * var(--u));
+  top: calc(10 * var(--u));
+  width: 1px;
+  height: calc(14 * var(--u));
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.voice-icon {
+  left: calc(570 * var(--u));
+  top: calc(10 * var(--u));
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  pointer-events: auto;
+}
+.voice-icon:hover { opacity: 0.7; }
+.voice-icon svg {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  display: block;
+}
+
+/* Send circle — glassy, TALLER than chips, hangs 7u below */
+.send {
+  left: calc(635 * var(--u));
+  top: calc(2 * var(--u));
+  width: calc(var(--send-d) * var(--u));
+  height: calc(var(--send-d) * var(--u));
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.send svg {
+  width: calc(17 * var(--u));
+  height: calc(17 * var(--u));
+}
+.send:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+.footer {
+  position: absolute;
+  bottom: calc(var(--inset-bottom) * var(--vu));
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--logo-gap) * var(--u));
+}
+.by {
+  font-size: calc(var(--by-fs) * var(--u));
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLET (600–1180 wide, height ≥ 600)
+   One-row toolbar: chips left, controls right
+   ═══════════════════════════════════════════════════ */
+@media (min-width:600px) and (max-width:1180px) and (min-height:600px) {
+  :root { --u: 1px; }
+
+  .frame {
+    padding:
+      clamp(24px, 3.4vh, 44px)
+      clamp(28px, 4.2vw, 60px)
+      clamp(26px, 4.4vh, 56px);
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .icon-btn svg { width: 16px; height: 16px; }
+
+
+
+  .h1 {
+    font-size: clamp(27px, 4.3vw, 44px);
+    line-height: 1.12;
+  }
+
+  /* Card becomes flex column */
+  .card {
+    width: min(100%, clamp(516px, 74vw, 760px));
+    height: auto;
+    margin-right: 0;
+    padding: clamp(15px, 1.9vw, 24px);
+    border-radius: clamp(17px, 2.1vw, 26px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3.2vh, 44px);
+  }
+
+  /* Search input becomes static flow */
+  .search-input {
+    position: static;
+    width: 100%;
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.4;
+    padding: 0;
+  }
+
+  /* Toolbar becomes static flex row, one row */
+  .tools {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(10px, 1.4vw, 18px);
+    pointer-events: auto;
+  }
+
+  .chips {
+    position: static;
+    flex-wrap: nowrap;
+    gap: clamp(6px, 0.85vw, 10px);
+    height: auto;
+  }
+
+  .chip {
+    width: auto;
+    height: clamp(29px, 3.4vh, 34px);
+    padding: 0 clamp(7px, 1vw, 13px);
+    font-size: clamp(9.6px, 1.12vw, 12.5px);
+    border-radius: 9px;
+  }
+
+  /* Right cluster becomes flex */
+  .right {
+    position: static;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 0;
+  }
+  .right > * { position: static; }
+
+  .model {
+    font-size: clamp(9.8px, 1.12vw, 12.5px);
+    left: auto; top: auto;
+    gap: 5px;
+  }
+  .chev { width: 8px; height: 8px; }
+
+  .img-icon {
+    left: auto; top: auto;
+    margin-left: clamp(8px, 1.2vw, 16px);
+  }
+  .img-icon svg { width: 18px; height: 18px; }
+  .voice-icon {
+    left: auto; top: auto;
+    margin-left: clamp(6px, 0.9vw, 12px);
+  }
+  .voice-icon svg { width: 18px; height: 18px; }
+  .attach {
+    left: auto; top: auto;
+    margin-left: clamp(6px, 0.9vw, 12px);
+  }
+  .attach svg { width: 18px; height: 18px; }
+
+  .right-divider {
+    left: auto; top: auto;
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 clamp(8px, 1.2vw, 14px);
+  }  .send { left: auto; top: auto; margin-left: 0; width: clamp(32px,3.5vw,38px); height: clamp(32px,3.5vw,38px); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); }
+  .send svg { width: 15px; height: 15px; }
+
+  .footer { position: static; margin-top: auto; padding: 16px 0; }
+  .by { font-size: 12px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPACT (max-width 599, or short+narrow)
+   ═══════════════════════════════════════════════════ */
+@media (max-width:599px), (max-height:599px) and (max-width:1180px) {
+  :root { --u: 1px; }
+
+  .frame {
+    padding:
+      max(18px, env(safe-area-inset-top))
+      max(clamp(18px, 5.2vw, 40px), env(safe-area-inset-right))
+      max(20px, env(safe-area-inset-bottom))
+      max(clamp(18px, 5.2vw, 40px), env(safe-area-inset-left));
+  }
+
+  .nav .cta { display: none !important; }
+  .burger { display: none !important; }
+  .header-actions { display: flex !important; gap: 8px; }
+  .icon-btn { width: 38px; height: 38px; }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .icon-btn::after { display: none; }
+
+  /* Fix dropdowns to show on mobile */
+  .lang-dropdown { z-index: 200; }
+  .ms365-popup { z-index: 200; }
+  .lang-wrap { position: static; }
+  .lang-dropdown {
+    position: fixed;
+    top: 56px;
+    right: 16px;
+    left: auto;
+  }
+  .ms365-wrap { position: static; }
+  .ms365-popup {
+    position: fixed;
+    top: 56px;
+    right: 50px;
+    left: auto;
+  }
+
+  .brand-name { font-size: 18px; }
+  .mark { font-size: 26px; }
+
+  .h1 {
+    width: 100%;
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(22px, 6.2vw, 38px);
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(8px, 2vh, 16px);
+    padding: clamp(13px, 3.4vw, 18px);
+    border-radius: 20px;
+  }
+
+  .search-input {
+    position: static;
+    width: 100%;
+    font-size: clamp(13px, 4vw, 18px);
+    padding: 0;
+  }
+
+  /* Chip dropdown visible, individual chips hidden */
+  .chips { display: none; }
+
+  /* Toolbar: single row — chip left, icons+send right, bottom of card */
+  .tools {
+    position: static;
+    left: auto; right: auto; top: auto;
+    width: auto; height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    pointer-events: auto;
+    min-width: 0;
+  }
+  .chip-dropdown {
+    display: block;
+    margin-left: 0;
+    flex-shrink: 0;
+    min-width: 0;
+    position: relative;
+  }
+  .chip-dropdown-btn {
+    height: 32px;
+    font-size: 13px;
+    padding: 0 12px;
+  }
+
+  /* Right cluster: icons + send in one row */
+  .right {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .right > * { position: static; }
+
+  .model { left: auto; top: auto; font-size: 12px; display: none; }
+  .chev { width: 8px; height: 8px; }
+
+  .img-icon { left: auto; top: auto; margin-left: 0; }
+  .img-icon svg { width: 18px; height: 18px; }
+  .voice-icon { left: auto; top: auto; margin-left: 0; }
+  .voice-icon svg { width: 18px; height: 18px; }
+  .attach { left: auto; top: auto; margin-left: 0; }
+  .attach svg { width: 18px; height: 18px; }
+
+  .right-divider {
+    left: auto; top: auto;
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+  }
+  .send { left: auto; top: auto; margin-left: 0; width: 36px; height: 36px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); }
+  .send svg { width: 16px; height: 16px; }
+
+  /* Chip dropdown list opens downward */
+  .chip-dropdown-list { bottom: auto; top: calc(100% + 4px); }
+
+  .footer { position: static; margin-top: auto; padding-bottom: 12px; }
+  .by { font-size: 12px; }
+}
+
+/* Extra short screens */
+@media (max-width:1180px) and (max-height:560px) {
+  .hero { gap: 16px; }
+  .h1 { font-size: clamp(24px, 5.4vh, 34px); }
+
+  .frame { padding-top: 10px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   ENTRANCE ANIMATIONS
+   Only under html.anim; never loops; never scroll-bound
+   ═══════════════════════════════════════════════════ */
+
+@keyframes e-settle-down {
+  from { opacity: 0; transform: translateY(calc(-5 * var(--u))); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes e-settle-up {
+  from { opacity: 0; transform: translateY(calc(6 * var(--u))); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes e-mark {
+  from { transform: scale(0.9); }
+  to   { transform: scale(1); }
+}
+@keyframes e-focus {
+  from { opacity: 0; transform: translateY(calc(14 * var(--u))); filter: blur(calc(6 * var(--u))); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes e-panel {
+  from { opacity: 0; transform: translateY(calc(18 * var(--u))) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes e-populate {
+  from { opacity: 0; transform: translateY(calc(4 * var(--u))); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes e-send {
+  from { transform: scale(0.82); }
+  to   { transform: scale(1); }
+}
+
+/* Apply when .anim class is present on <html> */
+html.anim .brand {
+  animation: e-settle-down 0.58s var(--e-soft) 0.06s both;
+}
+html.anim .mark {
+  animation: e-mark 0.62s var(--e-primary) 0.06s both;
+}
+
+html.anim .h1 {
+  animation: e-focus 1.00s var(--e-primary) 0.30s both;
+}
+html.anim .card {
+  animation: e-panel 0.90s var(--e-primary) 0.62s both;
+}
+html.anim .search-input {
+  animation: e-populate 0.50s var(--e-soft) 0.88s both;
+}
+html.anim .chips {
+  animation: e-populate 0.50s var(--e-soft) 0.94s both;
+}
+html.anim .right {
+  animation: e-populate 0.50s var(--e-soft) 1.00s both;
+}
+html.anim .send {
+  animation: e-send 0.50s var(--e-primary) 1.00s both;
+}
+html.anim .footer {
+  animation: e-settle-up 0.55s var(--e-soft) 1.34s both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html.anim .brand,
+  html.anim .mark,
+  html.anim .nav .cta,
+  html.anim .h1,
+  html.anim .card,
+  html.anim .search-input,
+  html.anim .chips,
+  html.anim .right,
+  html.anim .send,
+
+  html.anim .footer {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* RTL support */
+[dir="rtl"] .lang-dropdown { direction: rtl; text-align: right; }
+[dir="rtl"] .auth-card { direction: rtl; text-align: right; }
+
+/* MS365 popup */
+.ms365-wrap {
+  position: relative;
+}
+.ms365-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px) scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+}
+.ms365-popup.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.ms365-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.ms365-app:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.ms365-app svg {
+  width: 24px;
+  height: 24px;
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <video class="stage-video" autoplay muted loop playsinline>
+    <source src="https://assets.mixkit.co/videos/4881/4881-720.mp4" type="video/mp4">
+  </video>
+
+  <div class="stage-dim" id="stage-dim"></div>
+  <div class="frame">
+    <!-- hidden checkbox drives the mobile menu -->
+    <input type="checkbox" id="menu" class="burger-check" hidden>
+
+    <header class="nav">
+      <div class="brand">
+        <span class="mark">
+          <svg class="ms-logo" width="20" height="20" viewBox="0 0 21 21" fill="none">
+            <rect x="0" y="0" width="10" height="10" fill="#F25022"/>
+            <rect x="11" y="0" width="10" height="10" fill="#7FBA00"/>
+            <rect x="0" y="11" width="10" height="10" fill="#00A4EF"/>
+            <rect x="11" y="11" width="10" height="10" fill="#FFB900"/>
+          </svg>
+        </span>
+        <span class="brand-name" data-i18n="brand">Microsoft</span>
+      </div>
+
+      <div class="header-actions">
+        <a href="#" class="icon-btn" id="user-btn" aria-label="User" data-tooltip="Profile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <div class="lang-wrap">
+          <a href="#" class="icon-btn" id="lang-btn" aria-label="Language" data-tooltip="Language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </a>
+          <div class="lang-dropdown" id="lang-dropdown">
+            <div class="lang-option active" data-lang="en">English</div>
+            <div class="lang-option" data-lang="es">Español</div>
+            <div class="lang-option" data-lang="fr">Français</div>
+            <div class="lang-option" data-lang="de">Deutsch</div>
+            <div class="lang-option" data-lang="ja">日本語</div>
+            <div class="lang-option" data-lang="zh">中文</div>
+            <div class="lang-option" data-lang="ko">한국어</div>
+            <div class="lang-option" data-lang="pt">Português</div>
+            <div class="lang-option" data-lang="ar">العربية</div>
+            <div class="lang-option" data-lang="hi">हिन्दी</div>
+            <div class="lang-option" data-lang="fa">فارسی</div>
+          </div>
+        </div>
+        <a href="#" class="icon-btn" id="wallpaper-btn" aria-label="Wallpaper" data-tooltip="Change Wallpaper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </a>
+        <div class="ms365-wrap">
+          <a href="#" class="icon-btn" id="ms365-btn" aria-label="Microsoft 365" data-tooltip="Microsoft 365">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="8" height="8" rx="1"/>
+              <rect x="14" y="2" width="8" height="8" rx="1"/>
+              <rect x="2" y="14" width="8" height="8" rx="1"/>
+              <rect x="14" y="14" width="8" height="8" rx="1"/>
+            </svg>
+          </a>
+          <div class="ms365-popup" id="ms365-popup">
+            <a href="#" class="ms365-app" data-tooltip="Teams">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8l-5-5z"/><polyline points="16 3 16 8 21 8"/><circle cx="10" cy="13" r="2"/></svg>
+              <span>Teams</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="Word">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>Word</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="Excel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+              <span>Excel</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="PowerPoint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><circle cx="12" cy="10" r="3"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+              <span>PowerPoint</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="Outlook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+              <span>Outlook</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="OneNote">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="15" r="2"/></svg>
+              <span>OneNote</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="Defender">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Defender</span>
+            </a>
+            <a href="#" class="ms365-app" data-tooltip="OneDrive">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              <span>OneDrive</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <label for="menu" class="burger" id="burger" aria-label="Menu">
+        <svg class="burger-open" width="22" height="16" viewBox="0 0 22 16" fill="none">
+          <line x1="1" y1="1" x2="21" y2="1" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="1" y1="8" x2="21" y2="8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="1" y1="15" x2="21" y2="15" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <svg class="burger-close" width="22" height="16" viewBox="0 0 22 16" fill="none">
+          <line x1="2" y1="2" x2="20" y2="14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="2" y1="14" x2="20" y2="2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </label>
+    </header>
+
+    <!-- Mobile menu sheet -->
+    <div class="mobile-sheet" id="mobile-sheet">
+      <a href="#" class="icon-btn" id="sheet-user-btn" aria-label="User" data-tooltip="Profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="#" class="icon-btn" id="sheet-lang-btn" aria-label="Language" data-tooltip="Language">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </a>
+      <a href="#" class="icon-btn" id="sheet-wallpaper-btn" aria-label="Wallpaper" data-tooltip="Change Wallpaper">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </a>
+      <a href="#" class="icon-btn" id="sheet-ms365-btn" aria-label="Microsoft 365" data-tooltip="Microsoft 365">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="8" height="8" rx="1"/>
+          <rect x="14" y="2" width="8" height="8" rx="1"/>
+          <rect x="2" y="14" width="8" height="8" rx="1"/>
+          <rect x="14" y="14" width="8" height="8" rx="1"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Sign-in / Sign-up popup -->
+    <div class="auth-popup" id="auth-popup">
+      <div class="auth-card">
+        <button class="auth-close" id="auth-close" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h2 class="auth-title" data-i18n="welcome">Welcome</h2>
+        <p class="auth-sub" data-i18n="auth_sub">Sign in or create an account to get started</p>
+        <input type="email" class="auth-input" data-i18n-placeholder="email_placeholder" placeholder="Email address" aria-label="Email">
+        <input type="password" class="auth-input" data-i18n-placeholder="password_placeholder" placeholder="Password" aria-label="Password">
+        <button class="auth-btn auth-btn-primary" data-i18n="sign_in">Sign In</button>
+        <button class="auth-btn auth-btn-secondary" data-i18n="create_account">Create Account</button>
+        <div class="auth-divider"><span data-i18n="or">or</span></div>
+        <button class="auth-btn auth-btn-microsoft">
+          <svg width="16" height="16" viewBox="0 0 21 21" fill="none">
+            <rect x="0" y="0" width="10" height="10" fill="#F25022"/>
+            <rect x="11" y="0" width="10" height="10" fill="#7FBA00"/>
+            <rect x="0" y="11" width="10" height="10" fill="#00A4EF"/>
+            <rect x="11" y="11" width="10" height="10" fill="#FFB900"/>
+          </svg>
+          <span data-i18n="continue_ms">Continue with Microsoft account</span>
+        </button>
+      </div>
+    </div>
+
+    <main class="hero">        <h1 class="h1" data-i18n="hero_title">What are you looking for?</h1>
+
+      <div class="card">
+        <div class="card-glow"></div>
+        <input type="text" class="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search" aria-label="Search">
+
+        <div class="tools">
+          <div class="chip-dropdown" id="chip-dropdown">
+            <button class="chip-dropdown-btn" id="chip-dropdown-btn">
+              <span class="chip-dropdown-label" id="chip-dropdown-label" data-i18n="chip_images">Images</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="chip-dropdown-list" id="chip-dropdown-list">
+              <div class="chip-dropdown-option" data-chip="chip_images" data-i18n="chip_images">Images</div>
+              <div class="chip-dropdown-option" data-chip="chip_videos" data-i18n="chip_videos">Videos</div>
+              <div class="chip-dropdown-option" data-chip="chip_shopping" data-i18n="chip_shopping">Shopping</div>
+              <div class="chip-dropdown-option" data-chip="chip_maps" data-i18n="chip_maps">Maps</div>
+              <div class="chip-dropdown-option" data-chip="chip_news" data-i18n="chip_news">News</div>
+            </div>
+          </div>
+          <div class="chips">
+            <span class="chip" data-i18n="chip_images">Images</span>
+            <span class="chip" data-i18n="chip_videos">Videos</span>
+            <span class="chip" data-i18n="chip_shopping">Shopping</span>
+            <span class="chip" data-i18n="chip_maps">Maps</span>
+            <span class="chip" data-i18n="chip_news">News</span>
+          </div>
+
+          <div class="right">
+            <span class="img-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </span>
+            <span class="voice-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </span>
+            <span class="attach">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.44 11.05l-9.19 9.19a6.00 6.00 0 01-8.49-8.49l9.19-9.19a4.00 4.00 0 015.66 5.66l-9.2 9.19a2.00 2.00 0 01-2.83-2.83l8.49-8.48"/>
+              </svg>
+            </span>
+            <span class="right-divider"></span>
+            <span class="send">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+    <footer class="footer">
+      <span class="by">Powered by Copilot™</span>
+    </footer>
+  </div>
+</div>
+<script>/* ═══════════════════════════════════════════════════
+   FASTSHOT — JS: Animations, Interactions, i18n
+   ═══════════════════════════════════════════════════ */
+(function () {
+
+  /* ── ENTRANCE ANIMATION TEARDOWN ─────────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.remove('anim');
+    return;
+  }
+  var removed = false;
+  function teardown() {
+    if (removed) return;
+    removed = true;
+    document.documentElement.classList.remove('anim');
+  }
+  var logos = document.querySelectorAll('.logos .logo');
+  if (logos.length) {
+    logos[logos.length - 1].addEventListener('animationend', teardown);
+  }
+  setTimeout(teardown, 2600);
+
+  /* ── SHARED REFERENCES ─────────────────────────── */
+  var searchInput = document.querySelector('.search-input');
+  var stageDim = document.getElementById('stage-dim');
+  var stageVideo = document.querySelector('.stage-video');
+  var authPopup = document.getElementById('auth-popup');
+  var langDropdown = document.getElementById('lang-dropdown');
+  var ms365Popup = document.getElementById('ms365-popup');
+  var natureVideos = [
+    'https://assets.mixkit.co/videos/4881/4881-720.mp4',
+    'https://assets.mixkit.co/videos/2213/2213-720.mp4',
+    'https://assets.mixkit.co/videos/51445/51445-720.mp4',
+    'https://assets.mixkit.co/videos/1173/1173-720.mp4',
+    'https://assets.mixkit.co/videos/4645/4645-720.mp4',
+    'https://assets.mixkit.co/videos/4633/4633-720.mp4',
+    'https://assets.mixkit.co/videos/1446/1446-720.mp4',
+    'https://assets.mixkit.co/videos/1230/1230-720.mp4',
+    'https://assets.mixkit.co/videos/1259/1259-720.mp4',
+    'https://assets.mixkit.co/videos/1838/1838-720.mp4',
+    'https://assets.mixkit.co/videos/4235/4235-720.mp4'
+  ];
+  var videoIndex = 0;
+
+  /* ── CARD GLOW — mouse follow ─────────────────── */
+  var card = document.querySelector('.card');
+  var glow = document.querySelector('.card-glow');
+  if (card && glow) {
+    card.addEventListener('mousemove', function (e) {
+      var rect = card.getBoundingClientRect();
+      glow.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+      glow.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+    });
+  }
+
+  /* ── CHIP SELECTION + PLACEHOLDER ─────────────── */
+  var chips = document.querySelectorAll('.chip');
+  if (searchInput && stageDim) {
+    searchInput.addEventListener('input', function () {
+      stageDim.classList.toggle('active', searchInput.value.length > 0);
+    });
+    searchInput.addEventListener('blur', function () {
+      if (!searchInput.value) stageDim.classList.remove('active');
+    });
+  }
+
+  function getPlaceholderMap() {
+    return {
+      'chip_images': t('find_visuals'),
+      'chip_videos': t('find_videos'),
+      'chip_shopping': t('find_stores'),
+      'chip_maps': t('find_places'),
+      'chip_news': t('search_news')
+    };
+  }
+
+  var selectedChip = null;
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var was = chip.classList.contains('selected');
+      chips.forEach(function (c) { c.classList.remove('selected'); });
+      if (!was) {
+        chip.classList.add('selected');
+        selectedChip = chip;
+        var pm = getPlaceholderMap();
+        if (searchInput) searchInput.placeholder = pm[chip.getAttribute('data-i18n')] || t('search_placeholder');
+      } else {
+        selectedChip = null;
+        if (searchInput) searchInput.placeholder = t('search_placeholder');
+      }
+    });
+  });
+
+  /* ── LANGUAGE DROPDOWN ─────────────────────────── */
+  var langBtn = document.getElementById('lang-btn');
+  var langDropdown = document.getElementById('lang-dropdown');
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      langDropdown.classList.toggle('open');
+    });
+    langDropdown.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opt = e.target.closest('.lang-option');
+      if (opt) {
+        langDropdown.querySelectorAll('.lang-option').forEach(function (o) { o.classList.remove('active'); });
+        opt.classList.add('active');
+        langDropdown.classList.remove('open');
+        applyLanguage(opt.getAttribute('data-lang'));
+      }
+    });
+    document.addEventListener('click', function () {
+      langDropdown.classList.remove('open');
+    });
+  }
+
+  /* ── MS365 POPUP ──────────────────────────────── */
+  var ms365Btn = document.getElementById('ms365-btn');
+  var ms365Popup = document.getElementById('ms365-popup');
+  if (ms365Btn && ms365Popup) {
+    ms365Btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ms365Popup.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!ms365Popup.contains(e.target) && e.target !== ms365Btn) {
+        ms365Popup.classList.remove('open');
+      }
+    });
+  }
+
+  /* ── CHIP DROPDOWN (mobile model-selector style) ── */
+  var chipDropdown = document.getElementById('chip-dropdown');
+  var chipDropdownBtn = document.getElementById('chip-dropdown-btn');
+  var chipDropdownLabel = document.getElementById('chip-dropdown-label');
+  var chipDropdownList = document.getElementById('chip-dropdown-list');
+  if (chipDropdown && chipDropdownBtn && chipDropdownList) {
+    chipDropdownBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      chipDropdown.classList.toggle('open');
+    });
+    chipDropdownList.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opt = e.target.closest('.chip-dropdown-option');
+      if (opt) {
+        var chipKey = opt.getAttribute('data-chip');
+        var wasActive = opt.classList.contains('active');
+        chipDropdownList.querySelectorAll('.chip-dropdown-option').forEach(function (o) { o.classList.remove('active'); });
+        if (!wasActive) {
+          opt.classList.add('active');
+          chipDropdownLabel.textContent = opt.textContent;
+          selectedChip = { getAttribute: function() { return chipKey; } };
+          var pm = getPlaceholderMap();
+          if (searchInput) searchInput.placeholder = pm[chipKey] || t('search_placeholder');
+        } else {
+          selectedChip = null;
+          chipDropdownLabel.textContent = t('chip_images');
+          if (searchInput) searchInput.placeholder = t('search_placeholder');
+        }
+        chipDropdown.classList.remove('open');
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!chipDropdown.contains(e.target)) chipDropdown.classList.remove('open');
+    });
+  }
+
+  /* ── MOBILE SHEET BUTTONS ────────────────────── */
+  var sheetUserBtn = document.getElementById('sheet-user-btn');
+  var sheetLangBtn = document.getElementById('sheet-lang-btn');
+  var sheetWallpaperBtn = document.getElementById('sheet-wallpaper-btn');
+  var sheetMs365Btn = document.getElementById('sheet-ms365-btn');
+  if (sheetUserBtn && authPopup) {
+    sheetUserBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      authPopup.classList.add('open');
+    });
+  }
+  if (sheetLangBtn && langDropdown) {
+    sheetLangBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      langDropdown.classList.toggle('open');
+    });
+  }
+  if (sheetWallpaperBtn && stageVideo) {
+    sheetWallpaperBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      videoIndex = (videoIndex + 1) % natureVideos.length;
+      var source = stageVideo.querySelector('source');
+      if (source) { source.src = natureVideos[videoIndex]; stageVideo.load(); }
+    });
+  }
+  if (sheetMs365Btn && ms365Popup) {
+    sheetMs365Btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ms365Popup.classList.toggle('open');
+    });
+  }
+
+  /* ── AUTH POPUP ────────────────────────────────── */
+  var userBtn = document.getElementById('user-btn');
+  var authPopup = document.getElementById('auth-popup');
+  var authClose = document.getElementById('auth-close');
+  if (userBtn && authPopup) {
+    userBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      authPopup.classList.add('open');
+    });
+  }
+  if (authClose && authPopup) {
+    authClose.addEventListener('click', function () {
+      authPopup.classList.remove('open');
+    });
+  }
+  if (authPopup) {
+    authPopup.addEventListener('click', function (e) {
+      if (e.target === authPopup) authPopup.classList.remove('open');
+    });
+  }
+
+  /* ── WALLPAPER — cycle through nature videos ───── */
+  var wallpaperBtn = document.getElementById('wallpaper-btn');
+  if (wallpaperBtn && stageVideo) {
+    wallpaperBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      videoIndex = (videoIndex + 1) % natureVideos.length;
+      var source = stageVideo.querySelector('source');
+      if (source) {
+        source.src = natureVideos[videoIndex];
+        stageVideo.load();
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════
+     i18n — TRANSLATION SYSTEM
+     ═══════════════════════════════════════════════════ */
+
+  var translations = {
+    en: {
+      brand: 'Microsoft',
+      hero_title: 'What are you looking for?',
+      search_placeholder: 'Search',
+      chip_images: 'Images', chip_videos: 'Videos', chip_shopping: 'Shopping', chip_maps: 'Maps', chip_news: 'News',
+      find_visuals: 'Find visuals', find_videos: 'Find videos', find_stores: 'Find stores', find_places: 'Find places', search_news: 'Search news',
+      welcome: 'Welcome',
+      auth_sub: 'Sign in or create an account to get started',
+      email_placeholder: 'Email address', password_placeholder: 'Password',
+      sign_in: 'Sign In', create_account: 'Create Account', or: 'or',
+      continue_ms: 'Continue with Microsoft account'
+    },
+    es: {
+      brand: 'Microsoft',
+      hero_title: '¿Qué estás buscando?',
+      search_placeholder: 'Buscar',
+      chip_images: 'Imágenes', chip_videos: 'Videos', chip_shopping: 'Compras', chip_maps: 'Mapas', chip_news: 'Noticias',
+      find_visuals: 'Buscar imágenes', find_videos: 'Buscar vídeos', find_stores: 'Buscar tiendas', find_places: 'Buscar lugares', search_news: 'Buscar noticias',
+      welcome: 'Bienvenido',
+      auth_sub: 'Inicia sesión o crea una cuenta para comenzar',
+      email_placeholder: 'Correo electrónico', password_placeholder: 'Contraseña',
+      sign_in: 'Iniciar sesión', create_account: 'Crear cuenta', or: 'o',
+      continue_ms: 'Continuar con cuenta Microsoft'
+    },
+    fr: {
+      brand: 'Microsoft',
+      hero_title: 'Que recherchez-vous ?',
+      search_placeholder: 'Rechercher',
+      chip_images: 'Images', chip_videos: 'Vidéos', chip_shopping: 'Achats', chip_maps: 'Cartes', chip_news: 'Actualités',
+      find_visuals: 'Rechercher des images', find_videos: 'Rechercher des vidéos', find_stores: 'Rechercher des magasins', find_places: 'Rechercher des lieux', search_news: 'Rechercher des actualités',
+      welcome: 'Bienvenue',
+      auth_sub: 'Connectez-vous ou créez un compte pour commencer',
+      email_placeholder: 'Adresse e-mail', password_placeholder: 'Mot de passe',
+      sign_in: 'Se connecter', create_account: 'Créer un compte', or: 'ou',
+      continue_ms: 'Continuer avec un compte Microsoft'
+    },
+    de: {
+      brand: 'Microsoft',
+      hero_title: 'Was suchen Sie?',
+      search_placeholder: 'Suchen',
+      chip_images: 'Bilder', chip_videos: 'Videos', chip_shopping: 'Einkaufen', chip_maps: 'Karten', chip_news: 'Nachrichten',
+      find_visuals: 'Bilder finden', find_videos: 'Videos finden', find_stores: 'Geschäfte finden', find_places: 'Orte finden', search_news: 'Nachrichten suchen',
+      welcome: 'Willkommen',
+      auth_sub: 'Melden Sie sich an oder erstellen Sie ein Konto',
+      email_placeholder: 'E-Mail-Adresse', password_placeholder: 'Passwort',
+      sign_in: 'Anmelden', create_account: 'Konto erstellen', or: 'oder',
+      continue_ms: 'Mit Microsoft-Konto fortfahren'
+    },
+    pt: {
+      brand: 'Microsoft',
+      hero_title: 'O que você está procurando?',
+      search_placeholder: 'Pesquisar',
+      chip_images: 'Imagens', chip_videos: 'Vídeos', chip_shopping: 'Compras', chip_maps: 'Mapas', chip_news: 'Notícias',
+      find_visuals: 'Buscar imagens', find_videos: 'Buscar vídeos', find_stores: 'Buscar lojas', find_places: 'Buscar lugares', search_news: 'Buscar notícias',
+      welcome: 'Bem-vindo',
+      auth_sub: 'Faça login ou crie uma conta para começar',
+      email_placeholder: 'Endereço de e-mail', password_placeholder: 'Senha',
+      sign_in: 'Entrar', create_account: 'Criar conta', or: 'ou',
+      continue_ms: 'Continuar com conta Microsoft'
+    },
+    ja: {
+      brand: 'Microsoft',
+      hero_title: '何をお探しですか？',
+      search_placeholder: '検索',
+      chip_images: '画像', chip_videos: '動画', chip_shopping: 'ショッピング', chip_maps: '地図', chip_news: 'ニュース',
+      find_visuals: '画像を探す', find_videos: '動画を探す', find_stores: '店舗を探す', find_places: '場所を探す', search_news: 'ニュースを検索',
+      welcome: 'ようこそ',
+      auth_sub: 'サインインまたはアカウントを作成して開始',
+      email_placeholder: 'メールアドレス', password_placeholder: 'パスワード',
+      sign_in: 'サインイン', create_account: 'アカウント作成', or: 'または',
+      continue_ms: 'Microsoftアカウントで続行'
+    },
+    zh: {
+      brand: 'Microsoft',
+      hero_title: '您在寻找什么？',
+      search_placeholder: '搜索',
+      chip_images: '图片', chip_videos: '视频', chip_shopping: '购物', chip_maps: '地图', chip_news: '新闻',
+      find_visuals: '查找图片', find_videos: '查找视频', find_stores: '查找商店', find_places: '查找地点', search_news: '搜索新闻',
+      welcome: '欢迎',
+      auth_sub: '登录或创建帐户以开始使用',
+      email_placeholder: '电子邮件地址', password_placeholder: '密码',
+      sign_in: '登录', create_account: '创建帐户', or: '或',
+      continue_ms: '使用 Microsoft 帐户继续'
+    },
+    ko: {
+      brand: 'Microsoft',
+      hero_title: '무엇을 찾고 계신가요?',
+      search_placeholder: '검색',
+      chip_images: '이미지', chip_videos: '동영상', chip_shopping: '쇼핑', chip_maps: '지도', chip_news: '뉴스',
+      find_visuals: '이미지 찾기', find_videos: '동영상 찾기', find_stores: '매장 찾기', find_places: '장소 찾기', search_news: '뉴스 검색',
+      welcome: '환영합니다',
+      auth_sub: '로그인하거나 계정을 만들어 시작하세요',
+      email_placeholder: '이메일 주소', password_placeholder: '비밀번호',
+      sign_in: '로그인', create_account: '계정 만들기', or: '또는',
+      continue_ms: 'Microsoft 계정으로 계속'
+    },
+    ar: {
+      brand: 'Microsoft',
+      hero_title: 'ماذا تبحث عن؟',
+      search_placeholder: 'بحث',
+      chip_images: 'الصور', chip_videos: 'الفيديو', chip_shopping: 'التسوق', chip_maps: 'الخرائط', chip_news: 'الأخبار',
+      find_visuals: 'البحث عن صور', find_videos: 'البحث عن فيديو', find_stores: 'البحث عن متاجر', find_places: 'البحث عن أماكن', search_news: 'البحث عن أخبار',
+      welcome: 'مرحباً',
+      auth_sub: 'سجّل الدخول أو أنشئ حساباً للبدء',
+      email_placeholder: 'البريد الإلكتروني', password_placeholder: 'كلمة المرور',
+      sign_in: 'تسجيل الدخول', create_account: 'إنشاء حساب', or: 'أو',
+      continue_ms: 'المتابعة بحساب Microsoft'
+    },
+    hi: {
+      brand: 'Microsoft',
+      hero_title: 'आप क्या खोज रहे हैं?',
+      search_placeholder: 'खोजें',
+      chip_images: 'चित्र', chip_videos: 'वीडियो', chip_shopping: 'खरीदारी', chip_maps: 'मानचित्र', chip_news: 'समाचार',
+      find_visuals: 'चित्र खोजें', find_videos: 'वीडियो खोजें', find_stores: 'दुकान खोजें', find_places: 'स्थान खोजें', search_news: 'समाचार खोजें',
+      welcome: 'स्वागत है',
+      auth_sub: 'शुरू करने के लिए साइन इन करें या खाता बनाएं',
+      email_placeholder: 'ईमेल पता', password_placeholder: 'पासवर्ड',
+      sign_in: 'साइन इन', create_account: 'खाता बनाएं', or: 'या',
+      continue_ms: 'Microsoft खाते से जारी रखें'
+    },
+    fa: {
+      brand: 'Microsoft',
+      hero_title: 'چه چیزی را جستجو می‌کنید؟',
+      search_placeholder: 'جستجو',
+      chip_images: 'تصاویر', chip_videos: 'ویدیوها', chip_shopping: 'خرید', chip_maps: 'نقشه‌ها', chip_news: 'اخبار',
+      find_visuals: 'جستجوی تصاویر', find_videos: 'جستجوی ویدیو', find_stores: 'جستجوی فروشگاه‌ها', find_places: 'جستجوی مکان‌ها', search_news: 'جستجوی اخبار',
+      welcome: 'خوش آمدید',
+      auth_sub: 'برای شروع وارد شوید یا حساب بسازید',
+      email_placeholder: 'آدرس ایمیل', password_placeholder: 'رمز عبور',
+      sign_in: 'ورود', create_account: 'ساخت حساب', or: 'یا',
+      continue_ms: 'ادامه با حساب Microsoft'
+    }
+  };
+
+  var fontMap = {
+    en: null,
+    es: null,
+    fr: null,
+    de: null,
+    pt: null,
+    ja: "'Noto Sans JP', sans-serif",
+    zh: "'Noto Sans SC', 'Noto Sans TC', sans-serif",
+    ko: "'Noto Sans KR', sans-serif",
+    ar: "'Noto Sans Arabic', sans-serif",
+    hi: "'Noto Sans Devanagari', sans-serif",
+    fa: "'Noto Sans Arabic', sans-serif"
+  };
+
+  var currentLang = 'en';
+
+  function t(key) {
+    return (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
+  }
+
+  function applyLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+
+    // Set font for non-Latin scripts
+    var font = fontMap[lang];
+    if (font) {
+      document.documentElement.style.setProperty('--font-text', font);
+      document.body.style.fontFamily = font;
+    } else {
+      document.documentElement.style.setProperty('--font-text', "'Space Grotesk', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif");
+      document.body.style.fontFamily = "'Space Grotesk', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+    }
+
+    // Set direction for RTL languages
+    if (lang === 'ar' || lang === 'fa') {
+      document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+      document.documentElement.removeAttribute('dir');
+    }
+
+    // Update text content via data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = t(key);
+      if (val) el.textContent = val;
+    });
+
+    // Update placeholders via data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      var val = t(key);
+      if (val) el.placeholder = val;
+    });
+
+    // Update chip placeholder if one is selected
+    if (selectedChip && searchInput) {
+      var pm = getPlaceholderMap();
+      searchInput.placeholder = pm[selectedChip.getAttribute('data-i18n')] || t('search_placeholder');
+    }
+
+    // Update chip dropdown label
+    if (chipDropdownLabel) {
+      var activeOpt = chipDropdownList && chipDropdownList.querySelector('.chip-dropdown-option.active');
+      if (activeOpt) {
+        chipDropdownLabel.textContent = activeOpt.textContent;
+      } else {
+        chipDropdownLabel.textContent = t('chip_images');
+      }
+    }
+  }
+
+  // Initialize with English
+  applyLanguage('en');
+
+})();
+</script>
+</body>
+</html>
